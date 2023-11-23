@@ -68,7 +68,7 @@ uint8_t Med_Dht11_ReceOneByte(void)
     return receData;
 }
 
-/// @brief 储存数据到数组
+/// @brief 读取dh11数据，储存数据到数组
 /// @param receData 传入数组名(地址)
 void App_Dht11_Result_Process(uint8_t receData[])
 {
