@@ -1,5 +1,7 @@
 #include "main.h"
 
+#define BlueMassage "connect to bluetooth successfully"
+
 extern uint8_t Flag;// 数据包是否发送
 extern uint8_t num[];
 extern uint8_t cha;
@@ -32,7 +34,7 @@ int main(void)
 	// OLED_ShowHexNum(3, 1, 0xAA55, 4);
 	// OLED_ShowBinNum(4, 1, 0xAA55, 16);
 	// uint8_t KeyNum;
-	uint8_t *initMessage = {"init bluetooth successfully"};
+	uint8_t *initMessage = BlueMassage;
 	BL_SendArr(USART2, initMessage, strlen(initMessage), 0);
 	LED_Off();
 	while (1)
