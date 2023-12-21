@@ -1,12 +1,15 @@
 #include "stm32f10x.h"
 #include "OLED_Font.h"
+#include "DH11.h"
+
+extern uint8_t DH_Data[4];
 
 /*引脚配置*/
-#define OLED_W_D0(x) GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)(x))
-#define OLED_W_D1(x) GPIO_WriteBit(GPIOB, GPIO_Pin_6, (BitAction)(x))
-#define OLED_W_RES(x) GPIO_WriteBit(GPIOB, GPIO_Pin_7, (BitAction)(x))
-#define OLED_W_DC(x) GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
-#define OLED_W_CS(x) GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+#define OLED_W_D0(x) GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)(x)) //时钟
+#define OLED_W_D1(x) GPIO_WriteBit(GPIOB, GPIO_Pin_6, (BitAction)(x)) //数据总线 写信号
+#define OLED_W_RES(x) GPIO_WriteBit(GPIOB, GPIO_Pin_7, (BitAction)(x)) //复位信号
+#define OLED_W_DC(x) GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x)) //数据/命令选择信号
+#define OLED_W_CS(x) GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x)) //片选
 
 /*引脚初始化*/
 void OLED_SPI_Init(void)
@@ -321,4 +324,26 @@ void OLED_Init(void)
 	OLED_WriteCommand(0xAF); // 开启显示
 
 	OLED_Clear(); // OLED清屏
+}
+
+// OLED显示
+void OLED_START()
+{
+	// OLED_ShowChinese(1, 1, 0); //"你"
+	// OLED_ShowChinese(1, 2, 1); //"好"
+	OLED_ShowChinese(2, 1, 3); //"温"
+	OLED_ShowChinese(3, 1, 2); //"湿"
+	OLED_ShowChinese(3, 7, 5); //"℃"
+	OLED_ShowChinese(2, 7, 6); //"％"
+	OLED_ShowChinese(2, 2, 4); //"度"
+	OLED_ShowChinese(3, 2, 4); //"度"
+	OLED_ShowChar(3, 6, ':');
+	OLED_ShowChar(2, 6, ':');
+	OLED_ShowChar(3, 10, '.');
+	OLED_ShowChar(2, 10, '.');
+	//显示数据
+	OLED_ShowNum(2, 8, DH_Data[0], 2);
+	OLED_ShowNum(2, 11, DH_Data[1], 1);
+	OLED_ShowNum(3, 8, DH_Data[2], 2);
+	OLED_ShowNum(3, 11, DH_Data[3], 1);
 }

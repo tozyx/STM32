@@ -4,18 +4,19 @@
 #include "stdlib.h"
 #include "string.h"
 #include "stm32f10x_it.h"
+#include "Delay.h"
 
-extern uint8_t Flag;			  // Êı¾İ°üÊÇ·ñ·¢ËÍ
-extern uint8_t num[REC_BUF_SIZE]; // ´æ´¢ÉÏÎ»»ú·¢³öµÄÊı¾İ°ü
+extern uint8_t Flag;			  // æ•°æ®åŒ…æ˜¯å¦å‘é€
+extern uint8_t num[REC_BUF_SIZE]; // å­˜å‚¨ä¸Šä½æœºå‘å‡ºçš„æ•°æ®åŒ…
 
 /**************************************************************************
-º¯ÊıÃû£ºDATARecv
+å‡½æ•°åï¼šDATARecv
 
-×÷ÓÃ£º  ½«ÖĞ¶Ï½ÓÊÕµÄÊı¾İ°üµ¼³öµ½INPUT½á¹¹Ìå£¬½á¹¹ÌåºÍDATARccv¿É¸ù¾İÊµ¼ÊÇé¿ö½øĞĞ¸ü¸Ä
+ä½œç”¨ï¼š  å°†ä¸­æ–­æ¥æ”¶çš„æ•°æ®åŒ…å¯¼å‡ºåˆ°INPUTç»“æ„ä½“ï¼Œç»“æ„ä½“å’ŒDATARccvå¯æ ¹æ®å®é™…æƒ…å†µè¿›è¡Œæ›´æ”¹
 
-·µ»ØÖµ£ºINPUTÀàĞÍµÄ½á¹¹Ìå
+è¿”å›å€¼ï¼šINPUTç±»å‹çš„ç»“æ„ä½“
 
-Ê¹ÓÃ£ºBL_Send(DEBUG_USARTx,mode,quan)
+ä½¿ç”¨ï¼šBL_Send(DEBUG_USARTx,mode,quan)
 ***************************************************************************/
 INPUT DATARecv()
 {
@@ -29,9 +30,9 @@ INPUT DATARecv()
 	else
 	{
 
-		// ½ÓÊÕÒ»¸öcharÀàĞÍµÄÊı¾İ
+		// æ¥æ”¶ä¸€ä¸ªcharç±»å‹çš„æ•°æ®
 		structure.c = num[1];
-		// ½ÓÊÕÒ»¸öintÕûĞÎÊı¾İ
+		// æ¥æ”¶ä¸€ä¸ªintæ•´å½¢æ•°æ®
 		for (i = 6; i >= 2; i--)
 		{
 			a |= (num[i] << ((i - 2) * 8));
@@ -39,18 +40,18 @@ INPUT DATARecv()
 		structure.num = a;
 	}
 	a = 0;
-	Flag = 0; // ½ÓÊÕÍê³É
+	Flag = 0; // æ¥æ”¶å®Œæˆ
 	return structure;
 }
 
-/// @brief  ·µ»ØÊäÈëµÄ·Ç³£¹æÊı¾İ°üµÄÊı¾İ²¿·Ö£¬¼´ÌŞ³ıÊ×Î²×Ö½Ú
-/// @param cha Ô­Ê¼Êı¾İ°ü º¬ÓĞÊ×Î²±êÖ¾×Ö½Ú
-/// @return charÊı×é
+/// @brief  è¿”å›è¾“å…¥çš„éå¸¸è§„æ•°æ®åŒ…çš„æ•°æ®éƒ¨åˆ†ï¼Œå³å‰”é™¤é¦–å°¾å­—èŠ‚
+/// @param cha åŸå§‹æ•°æ®åŒ… å«æœ‰é¦–å°¾æ ‡å¿—å­—èŠ‚
+/// @return charæ•°ç»„
 char *ChaRecv(const char *cha)
 {
 	if (strlen(cha) <= 2)
 	{
-		// Èç¹ûÊäÈëÎª¿Õ»ò³¤¶ÈĞ¡ÓÚµÈÓÚ2£¬ÎŞ·¨É¾³ıÊ×Î²×Ö·û£¬Ö±½Ó·µ»ØÔ­×Ö·û´®µÄ¿½±´
+		// å¦‚æœè¾“å…¥ä¸ºç©ºæˆ–é•¿åº¦å°äºç­‰äº2ï¼Œæ— æ³•åˆ é™¤é¦–å°¾å­—ç¬¦ï¼Œç›´æ¥è¿”å›åŸå­—ç¬¦ä¸²çš„æ‹·è´
 		return (char *)cha;
 	}
 	uint8_t newlength = strlen(cha) - 2;
@@ -64,44 +65,44 @@ char *ChaRecv(const char *cha)
 }
 
 /**************************************************************************
-º¯ÊıÃû£ºBL_Send
+å‡½æ•°åï¼šBL_Send
 
-×÷ÓÃ£º  ÉÏÎ»»úÊı¾İÏÔÊ¾£¬°å×Ó·¢ËÍÉÏÎ»»ú£¬¸ù¾İÒª·¢ËÍµÄÊı¾İ×Ö½Ú£¬ÔÚµ÷ÊÔÆ÷ÉÏÉèÖÃ½ÓÊÕÊı¾İ°ü
-				²ÎÊı1´ú±í´®¿Ú£¬ºóÃæ´ú±í·¢ËÍµÄÊı¾İ£¬¿É¸ù¾İÊµ¼ÊÇé¿ö½øĞĞ¸ü¸Ä
+ä½œç”¨ï¼š  ä¸Šä½æœºæ•°æ®æ˜¾ç¤ºï¼Œæ¿å­å‘é€ä¸Šä½æœºï¼Œæ ¹æ®è¦å‘é€çš„æ•°æ®å­—èŠ‚ï¼Œåœ¨è°ƒè¯•å™¨ä¸Šè®¾ç½®æ¥æ”¶æ•°æ®åŒ…
+				å‚æ•°1ä»£è¡¨ä¸²å£ï¼Œåé¢ä»£è¡¨å‘é€çš„æ•°æ®ï¼Œå¯æ ¹æ®å®é™…æƒ…å†µè¿›è¡Œæ›´æ”¹
 
-²ÎÊı£º(´®¿ÚÀàĞÍ£¬Òª·¢ËÍµÄ²ÎÊı1£¬²ÎÊı2£¬²ÎÊı3)¿ÉĞŞ¸Ä¸öÊı£¬Í¬Ê±Ò²ÒªĞŞ¸Ä·¢ËÍµÄ×Ö½Ú¾ÍÊÇÏÂÃæ×¢ÊÍµôµÄ²¿·Ö
+å‚æ•°ï¼š(ä¸²å£ç±»å‹ï¼Œè¦å‘é€çš„å‚æ•°1ï¼Œå‚æ•°2ï¼Œå‚æ•°3)å¯ä¿®æ”¹ä¸ªæ•°ï¼ŒåŒæ—¶ä¹Ÿè¦ä¿®æ”¹å‘é€çš„å­—èŠ‚å°±æ˜¯ä¸‹é¢æ³¨é‡Šæ‰çš„éƒ¨åˆ†
 
-Ê¹ÓÃ£ºBL_Send(DEBUG_USARTx,mode,quan)
+ä½¿ç”¨ï¼šBL_Send(DEBUG_USARTx,mode,quan)
 ***************************************************************************/
-void BL_Send(USART_TypeDef *pUSARTx, u8 send_ok)
+void BL_Send(USART_TypeDef *pUSARTx, uint8_t send_ok)
 {
-	u8 sum = 0;					   // Ğ£ÑéÎ»--Êı¾İ×Ö½ÚÖ®ºÍµÄµÍ°ËÎ»
-	Usart_SendByte(pUSARTx, 0x8F); // Í·
-	///////////////////////////////////////·¢ËÍÄ£Ê½
+	uint8_t sum = 0;			   // æ ¡éªŒä½--æ•°æ®å­—èŠ‚ä¹‹å’Œçš„ä½å…«ä½
+	Usart_SendByte(pUSARTx, 0x8F); // å¤´
+	///////////////////////////////////////å‘é€æ¨¡å¼
 	Usart_SendByte(pUSARTx, send_ok);
 	sum += send_ok;
-	Usart_SendByte(pUSARTx, sum);  // Ğ£ÑéÎ»
-	Usart_SendByte(pUSARTx, 0xF8); // Î²
+	Usart_SendByte(pUSARTx, sum);  // æ ¡éªŒä½
+	Usart_SendByte(pUSARTx, 0xF8); // å°¾
 }
 
-/// @brief ·¢ËÍÊı×éÊı¾İ ·ÇÕı³£Êı¾İ°ü
-/// @param pUSARTx ËùÊ¹ÓÃ´®¿ÚºÅ ÈçUSART2 USART1
-/// @param send_arr ´«ÊäÊı×éÊ×µØÖ· ´«ÈëÊı×éÃû¼´¿É£¬Êı¾İ°ü×Ô¶¯·â×°Í·£¬Î²
-/// @param size Êı×é³¤¶È
-/// @param isCheck ÊÇ·ñÌí¼ÓĞ£ÑéÎ» 0 ²»Ìí¼ÓĞ£Ñé¼°Ê×Î² 1 Ìí¼ÓĞ£Ñé¼°Ê×Î²
-void BL_SendArr(USART_TypeDef *pUSARTx, u8 *send_arr, u8 size, u8 isCheck)
+/// @brief å‘é€æ•°ç»„æ•°æ® éæ­£å¸¸æ•°æ®åŒ…
+/// @param pUSARTx æ‰€ä½¿ç”¨ä¸²å£å· å¦‚USART2 USART1
+/// @param send_arr ä¼ è¾“æ•°ç»„é¦–åœ°å€ ä¼ å…¥æ•°ç»„åå³å¯ï¼Œæ•°æ®åŒ…è‡ªåŠ¨å°è£…å¤´ï¼Œå°¾
+/// @param size æ•°ç»„é•¿åº¦
+/// @param isCheck æ˜¯å¦æ·»åŠ æ ¡éªŒä½ 0 ä¸æ·»åŠ æ ¡éªŒåŠé¦–å°¾ 1 æ·»åŠ æ ¡éªŒåŠé¦–å°¾
+void BL_SendArr(USART_TypeDef *pUSARTx, uint8_t *send_arr, uint8_t size, uint8_t isCheck)
 {
 	uint8_t i = 0;
-	u8 sum = 0; // Ğ£ÑéÎ»--Êı×é×Ö½ÚÖ®ºÍµÄµÍ°ËÎ»
+	uint8_t sum = 0; // æ ¡éªŒä½--æ•°ç»„å­—èŠ‚ä¹‹å’Œçš„ä½å…«ä½
 	if (isCheck)
 	{
-		Usart_SendByte(pUSARTx, 0x8F); // Í·
-		Usart_SendByte(pUSARTx, 0x00);//Ä¬ÈÏ×Ö·û 0x32
+		Usart_SendByte(pUSARTx, 0x8F); // å¤´
+		Usart_SendByte(pUSARTx, 0x00); // é»˜è®¤å­—ç¬¦ 0x32
 	}
 
 	for (i = 0; i < size; i++, send_arr++)
 	{
-		if (*send_arr != 0xf8 && *send_arr != 0x8f) // ³ıÈ¥Í·Î²
+		if (*send_arr != 0xf8 && *send_arr != 0x8f) // é™¤å»å¤´å°¾
 		{
 			Usart_SendByte(pUSARTx, *send_arr);
 			sum += *send_arr;
@@ -117,7 +118,80 @@ void BL_SendArr(USART_TypeDef *pUSARTx, u8 *send_arr, u8 size, u8 isCheck)
 	}
 	if (isCheck)
 	{
-		Usart_SendByte(pUSARTx, sum);  // Ğ£ÑéÎ»
-		Usart_SendByte(pUSARTx, 0xF8); // Î²
+		Usart_SendByte(pUSARTx, sum);  // æ ¡éªŒä½
+		Usart_SendByte(pUSARTx, 0xF8); // å°¾
 	}
+}
+
+
+uint8_t u8x8_stm32_gpio_and_delay(U8X8_UNUSED u8x8_t *u8x8,
+								  U8X8_UNUSED uint8_t msg, U8X8_UNUSED uint8_t arg_int,
+								  U8X8_UNUSED void *arg_ptr)
+{
+	uint16_t n;
+	switch (msg)
+	{
+	case U8X8_MSG_DELAY_100NANO: // delay arg_int * 100 nano seconds
+		__NOP();
+		break;
+	case U8X8_MSG_DELAY_10MICRO: // delay arg_int * 10 micro seconds
+
+		for (n = 0; n < 320; n++)
+		{
+			__NOP();
+		}
+		break;
+	case U8X8_MSG_DELAY_MILLI: // delay arg_int * 1 milli second
+		Delay_ms(1);
+		break;
+	case U8X8_MSG_DELAY_I2C: // arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
+		Delay_us(5);
+		break; // arg_int=1: delay by 5us, arg_int = 4: delay by 1.25us
+	case U8X8_MSG_GPIO_SPI_DATA:
+		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
+			GPIO_SetBits(GPIOB, GPIO_Pin_6);
+		else if (arg_int == 0)
+			GPIO_ResetBits(GPIOB, GPIO_Pin_6);
+		break;
+	case U8X8_MSG_GPIO_SPI_CLOCK:
+		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
+			GPIO_SetBits(GPIOB, GPIO_Pin_5);
+		else if (arg_int == 0)
+			GPIO_ResetBits(GPIOB, GPIO_Pin_5);
+		break;
+	case U8X8_MSG_GPIO_CS:
+		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
+			GPIO_SetBits(GPIOB, GPIO_Pin_9);
+		else if (arg_int == 0)
+			GPIO_ResetBits(GPIOB, GPIO_Pin_9);
+		break;
+	case U8X8_MSG_GPIO_DC:
+		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
+			GPIO_SetBits(GPIOB, GPIO_Pin_8);
+		else if (arg_int == 0)
+			GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+		break;
+	case U8X8_MSG_GPIO_RESET:
+		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
+			GPIO_SetBits(GPIOB, GPIO_Pin_7);
+		else if (arg_int == 0)
+			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
+		break;
+	case U8X8_MSG_GPIO_MENU_SELECT:
+		u8x8_SetGPIOResult(u8x8, /* get menu select pin state */ 0);
+		break;
+	case U8X8_MSG_GPIO_MENU_NEXT:
+		u8x8_SetGPIOResult(u8x8, /* get menu next pin state */ 0);
+		break;
+	case U8X8_MSG_GPIO_MENU_PREV:
+		u8x8_SetGPIOResult(u8x8, /* get menu prev pin state */ 0);
+		break;
+	case U8X8_MSG_GPIO_MENU_HOME:
+		u8x8_SetGPIOResult(u8x8, /* get menu home pin state */ 0);
+		break;
+	default:
+		u8x8_SetGPIOResult(u8x8, 1); // default return value
+		break;
+	}
+	return 1;
 }

@@ -12,15 +12,18 @@
 
 #define DEBUG_USART_GPIO_CLK             RCC_APB2Periph_GPIOA   
 
-#define DEBUG_USART_GPIO_APBxClkCmd       RCC_APB2PeriphClockCmd  //�˿�ʱ��
+#define DEBUG_USART_GPIO_APBxClkCmd       RCC_APB2PeriphClockCmd  
 
-#define DEBUG_USART_TX_GPIO_PORT         GPIOA              //�˿ں궨��
+#define DEBUG_USART_TX_GPIO_PORT         GPIOA              //串口2
 #define DEBUG_USART_TX_GPIO_PIN          GPIO_Pin_2
 #define DEBUG_USART_RX_GPIO_PORT         GPIOA
 #define DEBUG_USART_RX_GPIO_PIN          GPIO_Pin_3
+#define DEBUG_BULETOOTH_STATE_PORT       GPIOA              //蓝牙状态口
+#define DEBUG_BULETOOTH_STATE_PIN        GPIO_Pin_1
+
 
 #define DEBUG_USART_IRQ                  USART2_IRQn
-#define DEBUG_USART_IRQHandler           USART2_IRQHandler   //�жϷ�����
+#define DEBUG_USART_IRQHandler           USART2_IRQHandler   //中断函数
 
 static void NVIC_Config(void);
 void USART_Config(void);

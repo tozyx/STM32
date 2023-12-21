@@ -106,6 +106,6 @@ void App_Dht11_Result_Process(uint8_t receData[])
     else
     {
         receData[0] = receData[1] = receData[2] = receData[3] = 0;
-        OLED_ShowString(1,5,"SENSOR ERROR");
+       // OLED_ShowString(1,5,"SENSOR ERROR");
     }
 }

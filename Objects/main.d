@@ -40,3 +40,9 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\HARDWARE\Funtion\function.h
 .\objects\main.o: .\HARDWARE\Funtion\function.h
+.\objects\main.o: .\U8G2\u8g2.h
+.\objects\main.o: .\U8G2\u8x8.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\main.o: .\SYSTEM\Timer.h

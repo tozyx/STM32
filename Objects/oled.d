@@ -29,3 +29,4 @@
 .\objects\oled.o: .\LIBRARY\stm32f10x_wwdg.h
 .\objects\oled.o: .\LIBRARY\misc.h
 .\objects\oled.o: HARDWARE\OLED_Font.h
+.\objects\oled.o: HARDWARE\DH11.h

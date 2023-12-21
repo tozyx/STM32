@@ -3,8 +3,8 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.35.0.0
-Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+IDE-Version: ¦ÌVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: 1 1, 1, LIC=UJWP0-B8KSW-2ZQW4-FDZY5-X2RWC-2ILJY
  
 Tool Versions:
@@ -21,13 +21,24 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-c:\Users\ZZZ\Desktop\STM32\2.LED\LED.uvprojx
-Project File Date:  09/23/2023
+C:\Users\ZZZ\Desktop\STM32\2.LED\LED.uvprojx
+Project File Date:  12/21/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\LED.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+USER\main.c(15): warning:  #177-D: variable "i"  was declared but never referenced
+  	int i = 0;
+USER\main.c: 1 warning, 0 errors
+compiling bsp_usart.c...
+HARDWARE\BlueTooth\bsp_usart.c(73): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+  			BL_SendArr(USART2, initMessage, strlen(initMessage), 0);
+HARDWARE\BlueTooth\bsp_usart.c: 1 warning, 0 errors
+compiling function.c...
+linking...
+Program Size: Code=9900 RO-data=10931060 RW-data=44 ZI-data=2860  
+".\Objects\LED.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -37,10 +48,10 @@ Package Vendor: Keil
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\ZZZ\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include
+  C:/Users/ZZZ/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

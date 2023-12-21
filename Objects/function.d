@@ -32,7 +32,13 @@
 .\objects\function.o: .\HARDWARE\BlueTooth\bsp_usart.h
 .\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\function.o: HARDWARE\Funtion\function.h
+.\objects\function.o: .\U8G2\u8g2.h
+.\objects\function.o: .\U8G2\u8x8.h
+.\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\function.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\function.o: .\USER\stm32f10x_it.h
+.\objects\function.o: .\SYSTEM\Delay.h
