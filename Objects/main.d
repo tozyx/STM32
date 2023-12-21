@@ -46,3 +46,4 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\objects\main.o: .\SYSTEM\Timer.h
+.\objects\main.o: .\U8G2\pic.h

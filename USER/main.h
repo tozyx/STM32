@@ -12,7 +12,7 @@
 #include "function.h"
 #include "Timer.h"
 #include "u8g2.h"
-#include "u8x8.h"
+#include "pic.h"
 
 extern uint8_t Flag;// 数据包是否发送
 extern uint8_t num[];

@@ -315,7 +315,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -331,14 +331,14 @@
             <uGnu>1</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
-            <v6LangP>1</v6LangP>
+            <v6LangP>5</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
             <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--no-multibyte-chars</MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
               <IncludePath>.\START;.\LIBRARY;.\USER;.\SYSTEM;.\HARDWARE;.\SYSTEM\sys;.\HARDWARE\OLED;.\HARDWARE\DHT11;.\HARDWARE\BlueTooth;.\HARDWARE\Funtion;.\U8G2</IncludePath>
@@ -1004,6 +1004,16 @@
               <FileName>u8x8_u16toa.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\u8g2\u8x8_u16toa.c</FilePath>
+            </File>
+            <File>
+              <FileName>pic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\u8g2\pic.h</FilePath>
+            </File>
+            <File>
+              <FileName>pic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\u8g2\pic.c</FilePath>
             </File>
           </Files>
         </Group>
