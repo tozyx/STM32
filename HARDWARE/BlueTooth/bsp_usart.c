@@ -66,15 +66,17 @@ void EXTI1_IRQHandler(void)
 {
 	if (EXTI_GetITStatus(EXTI_Line1) != RESET) // 判断某个EXTI_Line上的中断是否发生
 	{
-		
+
 		Delay_ms(500);
+		OLED_ShowString(4,3,"buletooth");
 		if (GPIO_ReadInputDataBit(DEBUG_BULETOOTH_STATE_PORT, DEBUG_BULETOOTH_STATE_PIN) == Bit_SET) // 连接到蓝牙
 		{
+			OLED_ShowChar(4, 14,'Y');
 			BL_SendArr(USART2, initMessage, strlen(initMessage), 0);
 		}
 		else
 		{
-			
+			OLED_ShowChar(4, 14,'X');
 		}
 		EXTI_ClearITPendingBit(EXTI_Line1);
 	}

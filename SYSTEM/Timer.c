@@ -1,7 +1,8 @@
 #include "stm32f10x.h" // Device header
 #include "DH11.h"
 
-uint8_t DH_Data[4];
+extern uint8_t DH_Data[4];
+
 
 void Timer_Init(void)
 {

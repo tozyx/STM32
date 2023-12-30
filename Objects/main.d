@@ -31,6 +31,7 @@
 .\objects\main.o: .\LIBRARY\misc.h
 .\objects\main.o: .\SYSTEM\Delay.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: .\HARDWARE\LED.h
 .\objects\main.o: .\HARDWARE\KEY.h

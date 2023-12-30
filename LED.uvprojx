@@ -1015,6 +1015,16 @@
               <FileType>1</FileType>
               <FilePath>.\u8g2\pic.c</FilePath>
             </File>
+            <File>
+              <FileName>pic_pic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\u8g2\pic_pic.h</FilePath>
+            </File>
+            <File>
+              <FileName>Gif.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\u8g2\Gif.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

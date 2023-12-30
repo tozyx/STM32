@@ -3,6 +3,7 @@
 #include "stm32f10x.h" // Device header
 #include "Delay.h"
 #include "string.h"
+#include "math.h"
 #include "stdlib.h"
 #include "LED.h"
 #include "KEY.h"
@@ -14,9 +15,7 @@
 #include "u8g2.h"
 #include "pic.h"
 
-extern uint8_t Flag;// 数据包是否发送
-extern uint8_t num[];
-extern uint8_t cha;
+
 extern uint8_t DH_Data[4];
 
 #endif

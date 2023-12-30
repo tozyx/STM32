@@ -123,75 +123,12 @@ void BL_SendArr(USART_TypeDef *pUSARTx, uint8_t *send_arr, uint8_t size, uint8_t
 	}
 }
 
-
-uint8_t u8x8_stm32_gpio_and_delay(U8X8_UNUSED u8x8_t *u8x8,
-								  U8X8_UNUSED uint8_t msg, U8X8_UNUSED uint8_t arg_int,
-								  U8X8_UNUSED void *arg_ptr)
+// char转int对应ascll
+void CharToAscll(char a[], int b[])
 {
-	uint16_t n;
-	switch (msg)
+	uint8_t i = 0;
+	for (; i < 4; i++)
 	{
-	case U8X8_MSG_DELAY_100NANO: // delay arg_int * 100 nano seconds
-		__NOP();
-		break;
-	case U8X8_MSG_DELAY_10MICRO: // delay arg_int * 10 micro seconds
-
-		for (n = 0; n < 320; n++)
-		{
-			__NOP();
-		}
-		break;
-	case U8X8_MSG_DELAY_MILLI: // delay arg_int * 1 milli second
-		Delay_ms(1);
-		break;
-	case U8X8_MSG_DELAY_I2C: // arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
-		Delay_us(5);
-		break; // arg_int=1: delay by 5us, arg_int = 4: delay by 1.25us
-	case U8X8_MSG_GPIO_SPI_DATA:
-		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
-			GPIO_SetBits(GPIOB, GPIO_Pin_6);
-		else if (arg_int == 0)
-			GPIO_ResetBits(GPIOB, GPIO_Pin_6);
-		break;
-	case U8X8_MSG_GPIO_SPI_CLOCK:
-		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
-			GPIO_SetBits(GPIOB, GPIO_Pin_5);
-		else if (arg_int == 0)
-			GPIO_ResetBits(GPIOB, GPIO_Pin_5);
-		break;
-	case U8X8_MSG_GPIO_CS:
-		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
-			GPIO_SetBits(GPIOB, GPIO_Pin_9);
-		else if (arg_int == 0)
-			GPIO_ResetBits(GPIOB, GPIO_Pin_9);
-		break;
-	case U8X8_MSG_GPIO_DC:
-		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
-			GPIO_SetBits(GPIOB, GPIO_Pin_8);
-		else if (arg_int == 0)
-			GPIO_ResetBits(GPIOB, GPIO_Pin_8);
-		break;
-	case U8X8_MSG_GPIO_RESET:
-		if (arg_int == 1) // arg_int=1: Input dir with pullup high for I2C clock pin
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		else if (arg_int == 0)
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		break;
-	case U8X8_MSG_GPIO_MENU_SELECT:
-		u8x8_SetGPIOResult(u8x8, /* get menu select pin state */ 0);
-		break;
-	case U8X8_MSG_GPIO_MENU_NEXT:
-		u8x8_SetGPIOResult(u8x8, /* get menu next pin state */ 0);
-		break;
-	case U8X8_MSG_GPIO_MENU_PREV:
-		u8x8_SetGPIOResult(u8x8, /* get menu prev pin state */ 0);
-		break;
-	case U8X8_MSG_GPIO_MENU_HOME:
-		u8x8_SetGPIOResult(u8x8, /* get menu home pin state */ 0);
-		break;
-	default:
-		u8x8_SetGPIOResult(u8x8, 1); // default return value
-		break;
+		b[i] = (int)a[i];
 	}
-	return 1;
 }

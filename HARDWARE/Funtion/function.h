@@ -17,6 +17,6 @@ INPUT DATARecv(void);
 void BL_Send(USART_TypeDef *pUSARTx, uint8_t send_ok);
 char *ChaRecv(const char *cha);
 void BL_SendArr(USART_TypeDef *pUSARTx, uint8_t *array, uint8_t size, uint8_t isCheck);
-
+void CharToAscll(char a[],int b[]);
 
 #endif
