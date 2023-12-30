@@ -5,8 +5,6 @@
 #include "string.h"
 #include "math.h"
 #include "stdlib.h"
-#include "LED.h"
-#include "KEY.h"
 #include "DH11.h"
 #include "OLED.h"
 #include "bsp_usart.h"
